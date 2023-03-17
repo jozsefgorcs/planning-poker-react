@@ -4,19 +4,23 @@ import "./Login.css";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { authActions } from "../../store/auth";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 interface ILoginFormInput {
   email: String;
   password: String;
   firstName: String;
 }
 
-interface ILoginPageProps {}
+type ILoginPageProps = {};
 
-const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
+function LoginPage(props: ILoginPageProps) {
   const { register, handleSubmit } = useForm<ILoginFormInput>();
   const dispatch = useDispatch();
-  const onSubmit: SubmitHandler<ILoginFormInput> = (data: any) =>
+  const navigate = useNavigate();
+  const onSubmit: SubmitHandler<ILoginFormInput> = (data: any) => {
     dispatch(authActions.login(data.email));
+    navigate("/home");
+  };
 
   return (
     <div>
@@ -51,6 +55,6 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
       </form>
     </div>
   );
-};
+}
 
 export default LoginPage;
