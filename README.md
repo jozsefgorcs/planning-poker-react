@@ -6,4 +6,6 @@ This is a simple Scrum Planning Poker Frontend project created entirely for lear
 
 - TypeScript
 - React.js
-
+- Redux Toolkit
+- react-hook-form
+- Bootstrap
