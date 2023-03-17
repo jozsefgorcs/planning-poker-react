@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import "./Layout.css";
 type LayoutProps = {
   children: any;
@@ -16,28 +17,31 @@ function Layout(props: LayoutProps) {
             <h3 className="float-md-start mb-0">Planning poker</h3>
             {isAuth && (
               <nav className="nav nav-masthead justify-content-center float-md-end">
-                <a
-                  className="nav-link fw-bold py-1 px-0 active"
-                  aria-current="page"
-                  href="#"
-                >
+                <NavLink to="/" className="nav-link fw-bold py-1 px-0 ">
                   Home
-                </a>
-                <a className="nav-link fw-bold py-1 px-0" href="#">
-                  Features
-                </a>
-                <a className="nav-link fw-bold py-1 px-0" href="#">
-                  Contact
-                </a>
+                </NavLink>
+
+                <NavLink to="/settings" className="nav-link fw-bold py-1 px-0 ">
+                  Settings
+                </NavLink>
+
+                <NavLink to="/about" className="nav-link fw-bold py-1 px-0 ">
+                  About
+                </NavLink>
               </nav>
             )}
           </div>
         </header>
 
-        <main className="px-3">{props.children}</main>
+        <main className="px-3">
+          <Outlet />
+        </main>
 
         <footer className="mt-auto text-white-50">
-          <p>Programmed by jozsefgorcs</p>
+          <p>
+            Programmed by{" "}
+            <a href="https://github.com/jozsefgorcs">jozsefgorcs</a>
+          </p>
         </footer>
       </div>
     </div>
