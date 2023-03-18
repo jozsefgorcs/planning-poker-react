@@ -40,7 +40,9 @@ function Layout(props: LayoutProps) {
         <footer className="mt-auto text-white-50">
           <p>
             Programmed by{" "}
-            <a href="https://github.com/jozsefgorcs">jozsefgorcs</a>
+            <a className="text-white" href="https://github.com/jozsefgorcs">
+              jozsefgorcs
+            </a>
           </p>
         </footer>
       </div>

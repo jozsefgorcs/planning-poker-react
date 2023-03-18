@@ -1,0 +1,8 @@
+.value-card{
+    aspect-ratio: 2 / 3;
+    transition: transform 1s;
+}
+
+.value-card:hover{
+    transform: scale(1.5);
+}

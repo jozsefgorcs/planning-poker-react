@@ -1,0 +1,7 @@
+.btn-start {
+    transition: transform 1s;
+}
+
+.btn-start:hover{
+transform: translate(10px, 0);
+}
