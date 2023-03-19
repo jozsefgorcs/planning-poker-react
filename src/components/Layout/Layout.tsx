@@ -1,9 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import "./Layout.css";
-type LayoutProps = {
-  children: any;
-};
+type LayoutProps = {};
 
 function Layout(props: LayoutProps) {
   const isAuth: boolean = useSelector(

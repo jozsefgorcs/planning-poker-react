@@ -42,12 +42,7 @@ export default function AddStoryModal(props: Props) {
 
   return (
     <div>
-      <Modal
-        isOpen={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
+      <Modal isOpen={show} backdrop="static" keyboard={false}>
         <ModalHeader>Add new story</ModalHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>

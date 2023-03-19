@@ -18,7 +18,7 @@ import About from "./pages/About/About";
 
 const router = createBrowserRouter([
   {
-    element: <Layout />,
+    element: <Layout  />,
     children: [
       {
         path: "/login",

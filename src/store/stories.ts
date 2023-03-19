@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialStoriesState = {
-  availableStories: [{ id: 1, title: "Test title", description: "asd" }],
+  availableStories: [
+    { id: 1, title: "Test title", description: "Bar" },
+    { id: 2, title: "Second story", description: "Foo" },
+  ],
   estimableStory: null,
 };
 
