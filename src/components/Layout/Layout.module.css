@@ -39,7 +39,7 @@
   overflow-y: hidden;
 }
 
-.nav-scroller .nav {
+.nav-scroller .navigation {
   display: flex;
   flex-wrap: nowrap;
   padding-bottom: 1rem;
@@ -48,6 +48,7 @@
   text-align: center;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+  
 }
 
 .full-div {

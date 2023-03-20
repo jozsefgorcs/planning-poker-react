@@ -1,5 +1,5 @@
 .btn-start {
-    transition: transform 1s;
+    transition: transform .3s;
 }
 
 .btn-start:hover{

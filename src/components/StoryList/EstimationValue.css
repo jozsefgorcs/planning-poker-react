@@ -1,6 +1,6 @@
 .value-card{
     aspect-ratio: 2 / 3;
-    transition: transform 1s;
+    transition: transform 0.3s;
 }
 
 .value-card:hover{
