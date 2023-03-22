@@ -1,8 +1,8 @@
 import "./AvailableStoryListitem.css";
-type EstimateFunction = (id: string) => void;
+type EstimateFunction = (id: number) => void;
 
 type Props = {
-  id: string;
+  id: number;
   title: string;
   text: string;
   onEstimableClick: EstimateFunction;

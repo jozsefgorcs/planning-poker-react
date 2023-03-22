@@ -14,7 +14,7 @@ function HomePage({}: Props) {
   );
   const [addStoryModalVisible, setAddStoryModalVisible] =
     useState<boolean>(false);
-  function onNewStory(data: any): void {
+  const onNewStory = (data: any): void => {
     dispatch(
       storiesActions.addStory({
         title: data.title,
@@ -22,7 +22,10 @@ function HomePage({}: Props) {
         id: Math.floor(Math.random() * 1000),
       })
     );
-  }
+  };
+  const onEstimableClick = (storyId: number): void => {
+    dispatch(storiesActions.setStoryEstimable(storyId));
+  };
 
   return (
     <div className="container">
@@ -30,6 +33,7 @@ function HomePage({}: Props) {
         <div className="col-12 col-md-3">
           <AvailableStoryList
             storyList={availableStoryList}
+            onEstimableClick={onEstimableClick}
           ></AvailableStoryList>
           <button
             className="btn btn-primary"

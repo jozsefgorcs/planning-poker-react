@@ -5,7 +5,7 @@ const initialStoriesState = {
     { id: 1, title: "Test title", description: "Bar" },
     { id: 2, title: "Second story", description: "Foo" },
   ],
-  estimableStory: null,
+  estimableStory: {},
 };
 
 const storiesSlice = createSlice({
@@ -16,18 +16,20 @@ const storiesSlice = createSlice({
       state.availableStories.push(action.payload);
     },
     setStoryEstimable(state, action) {
-      state.estimableStory = action.payload;
+      state.estimableStory = state.availableStories.filter(
+        (x) => x.id === action.payload
+      )[0];
       state.availableStories = state.availableStories.filter(
-        (x) => x.id !== action.payload.id
+        (x) => x.id !== action.payload
       );
     },
     closeCurrentlyEstimable(state) {
-      state.estimableStory = null;
+      state.estimableStory = {};
     },
     rollbackCurrentlyEstimable(state) {
       if (!state.estimableStory) return;
       state.availableStories.push(state.estimableStory);
-      state.estimableStory = null;
+      state.estimableStory = {};
     },
   },
 });

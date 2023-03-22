@@ -32,6 +32,7 @@ export default function AddStoryModal(props: Props) {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     props.dataSubmit(data);
+    setShow(false);
     props.setVisible(false);
   };
 

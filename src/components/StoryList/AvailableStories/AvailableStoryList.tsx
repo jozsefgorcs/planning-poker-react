@@ -3,9 +3,13 @@ import AvailableStoryListitem from "./AvailableStoryListitem";
 
 type Props = {
   storyList: Array<any>;
+  onEstimableClick(storyId: number): void;
 };
 
-export default function AvailableStoryList({ storyList }: Props) {
+export default function AvailableStoryList({
+  storyList,
+  onEstimableClick,
+}: Props) {
   return (
     <>
       {storyList.map((story) => (
@@ -14,7 +18,7 @@ export default function AvailableStoryList({ storyList }: Props) {
           id={story.id}
           title={story.title}
           text={story.description}
-          onEstimableClick={() => alert("ok")}
+          onEstimableClick={(id: number) => onEstimableClick(id)}
         ></AvailableStoryListitem>
       ))}
     </>
