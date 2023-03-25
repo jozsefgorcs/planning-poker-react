@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddStoryModal from "../../components/StoryList/AddStoryModal";
 import AvailableStoryList from "../../components/StoryList/AvailableStories/AvailableStoryList";
 import AvailableStoryListitem from "../../components/StoryList/AvailableStories/AvailableStoryListitem";
 import EstimationValue from "../../components/StoryList/EstimationValue";
-import { storiesActions } from "../../store/stories";
+import { storiesActions, fetchStories, addStory } from "../../store/stories";
 type Props = {};
 
 function HomePage({}: Props) {
@@ -16,7 +16,7 @@ function HomePage({}: Props) {
     useState<boolean>(false);
   const onNewStory = (data: any): void => {
     dispatch(
-      storiesActions.addStory({
+      addStory({
         title: data.title,
         description: data.description,
         id: Math.floor(Math.random() * 1000),
@@ -26,6 +26,10 @@ function HomePage({}: Props) {
   const onEstimableClick = (storyId: number): void => {
     dispatch(storiesActions.setStoryEstimable(storyId));
   };
+
+  useEffect(() => {
+    dispatch(fetchStories());
+  }, []);
 
   return (
     <div className="container">
