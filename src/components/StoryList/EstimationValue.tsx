@@ -10,10 +10,12 @@ type Props = {
 const EstimationValue = (props: Props) => {
   return (
     <div
-      className="card value-card col-5 col-md-4 col-lg-2 align-middle"
+      className="card value-card col-5 col-md-4 col-lg-2 align-middle m-4"
       onClick={() => props.onClick(props.value)}
     >
-      <p className="estimation-text display-1 text-center mt-2">{props.value}</p>
+      <p className="estimation-text display-1 text-center mt-2">
+        {props.value}
+      </p>
     </div>
   );
 };

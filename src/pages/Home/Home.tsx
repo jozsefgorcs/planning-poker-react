@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AddStoryModal from "../../components/StoryList/AddStoryModal";
 import AvailableStoryList from "../../components/StoryList/AvailableStories/AvailableStoryList";
-import AvailableStoryListitem from "../../components/StoryList/AvailableStories/AvailableStoryListitem";
-import EstimationValue from "../../components/StoryList/EstimationValue";
-import { storiesActions, fetchStories, addStory } from "../../store/stories";
+import CurrentEstimation from "../../components/StoryList/CurrentEstimation";
+
+import { fetchStories, addStory, startEstimation } from "../../store/stories";
 type Props = {};
 
 function HomePage({}: Props) {
@@ -24,7 +24,7 @@ function HomePage({}: Props) {
     );
   };
   const onEstimableClick = (storyId: number): void => {
-    dispatch(storiesActions.setStoryEstimable(storyId));
+    dispatch(startEstimation(storyId));
   };
 
   useEffect(() => {
@@ -47,12 +47,7 @@ function HomePage({}: Props) {
           </button>
         </div>
         <div className="col-12 col-md-8">
-          <EstimationValue
-            onClick={function (value: string): void {
-              throw new Error("Function not implemented.");
-            }}
-            value="12"
-          />
+          <CurrentEstimation />
         </div>
         <AddStoryModal
           setVisible={setAddStoryModalVisible}
