@@ -3,14 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import AddStoryModal from "../../components/StoryList/AddStoryModal";
 import AvailableStoryList from "../../components/StoryList/AvailableStories/AvailableStoryList";
 import CurrentEstimation from "../../components/StoryList/CurrentEstimation";
+import EstimatedStories from "../../components/StoryList/EstimatedStories";
 
-import { fetchStories, addStory, startEstimation } from "../../store/stories";
+import {
+  fetchStories,
+  addStory,
+  startEstimation,
+  fetchEstimatedStories,
+} from "../../store/stories";
 type Props = {};
 
 function HomePage({}: Props) {
   const dispatch = useDispatch();
   const availableStoryList = useSelector(
     (state: any) => state.stories.availableStories
+  );
+  const estimatedStoryList = useSelector(
+    (state: any) => state.stories.estimatedStories
   );
   const [addStoryModalVisible, setAddStoryModalVisible] =
     useState<boolean>(false);
@@ -29,6 +38,7 @@ function HomePage({}: Props) {
 
   useEffect(() => {
     dispatch(fetchStories());
+    dispatch(fetchEstimatedStories());
   }, []);
 
   return (
@@ -46,8 +56,11 @@ function HomePage({}: Props) {
             Add story
           </button>
         </div>
-        <div className="col-12 col-md-8">
+        <div className="col-12 col-md-6">
           <CurrentEstimation />
+        </div>
+        <div className="col-12 col-md-3">
+          <EstimatedStories estimatedStoryList={estimatedStoryList} />
         </div>
         <AddStoryModal
           setVisible={setAddStoryModalVisible}

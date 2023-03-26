@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Button } from "reactstrap";
 import { storiesApi } from "../api/ConfiguredService";
+import { FinishedStoryDto } from "../api/swagger";
 
 export type Story = {
   id: number;
@@ -11,6 +12,7 @@ export type Story = {
 type StoriesState = {
   availableStories: Story[];
   estimableStory: Story | null;
+  estimatedStories: FinishedStoryDto | null;
 };
 const initialStoriesState: StoriesState = {
   availableStories: [],
@@ -56,6 +58,9 @@ const storiesSlice = createSlice({
     builder.addCase(finishEstimation.fulfilled, (state, action) => {
       state.estimableStory = null;
     });
+    builder.addCase(fetchEstimatedStories.fulfilled, (state, action) => {
+      state.estimatedStories = action.payload;
+    });
   },
 });
 
@@ -63,6 +68,14 @@ export const fetchStories = createAsyncThunk(
   "stories/fetchStories",
   async () => {
     let { data } = await storiesApi.apiStoriesGetAllNotEstimatedGet();
+    return data;
+  }
+);
+
+export const fetchEstimatedStories = createAsyncThunk(
+  "stories/fetchEstimatedStories",
+  async () => {
+    let { data } = await storiesApi.apiStoriesGetFinishedStoriesGet();
     return data;
   }
 );

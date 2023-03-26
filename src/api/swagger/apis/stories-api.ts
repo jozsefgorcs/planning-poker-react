@@ -23,6 +23,8 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
 // @ts-ignore
 import { CreateStoryDto } from '../models';
 // @ts-ignore
+import { FinishedStoryDto } from '../models';
+// @ts-ignore
 import { StoryDto } from '../models';
 /**
  * StoriesApi - axios parameter creator
@@ -99,6 +101,35 @@ export const StoriesApiAxiosParamCreator = function (configuration?: Configurati
          */
         apiStoriesGetEstimableGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Stories/GetEstimable`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiStoriesGetFinishedStoriesGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Stories/GetFinishedStories`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -227,6 +258,15 @@ export const StoriesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiStoriesGetFinishedStoriesGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FinishedStoryDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiStoriesGetFinishedStoriesGet(options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @param {CreateStoryDto} [createStoryDto] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -279,6 +319,14 @@ export const StoriesApiFactory = function (configuration?: Configuration, basePa
          */
         apiStoriesGetEstimableGet(options?: any): AxiosPromise<StoryDto> {
             return localVarFp.apiStoriesGetEstimableGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiStoriesGetFinishedStoriesGet(options?: any): AxiosPromise<Array<FinishedStoryDto>> {
+            return localVarFp.apiStoriesGetFinishedStoriesGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -337,6 +385,16 @@ export class StoriesApi extends BaseAPI {
      */
     public apiStoriesGetEstimableGet(options?: AxiosRequestConfig) {
         return StoriesApiFp(this.configuration).apiStoriesGetEstimableGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StoriesApi
+     */
+    public apiStoriesGetFinishedStoriesGet(options?: AxiosRequestConfig) {
+        return StoriesApiFp(this.configuration).apiStoriesGetFinishedStoriesGet(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
